@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fé-tec - Resultados da Pesquisa</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #1a1a1a;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-right: 10px; /* Ajuste para espaçamento com a barra de pesquisa */
+        }
+
+        .logo img {
+            width: 80px; /* Ajuste o tamanho conforme necessário */
+            cursor: pointer; /* Indicador de clique */
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Alinha itens ao espaçamento disponível */
+            background-color: #0044cc;
+            border-radius: 50px;
+            padding: 5px 20px;
+            width: calc(100% - 100px - 40px - 2em); /* Diminuir largura em 10px */
+        }
+
+        .search-bar input {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            margin-right: 10px;
+            width: calc(100% - 100px - 40px); /* Ajustar largura do input */
+        }
+
+        .search-bar button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            font-size: 20px;
+        }
+
+        .dots {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 10px; /* Ajuste para alinhar com a barra de pesquisa */
+        }
+
+        .dots div {
+            width: 6px;
+            height: 6px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin: 2px 0; /* Ajustar para alinhamento vertical */
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .results {
+            text-align: center;
+        }
+
+        .video-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .video-thumbnail {
+            width: 300px;
+            cursor: pointer;
+            background-color: #1a1a1a;
+            border-radius: 5px;
+            padding: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .video-thumbnail:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .video-thumbnail p {
+            margin: 10px 0 0 0;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo">
+                <img src="https://i.ibb.co/8sRDtry/logo.png" alt="FÉ-TEC" onclick="goToHome()">
+            </div>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Pesquisar" id="searchInput">
+            <button onclick="search()">🔍</button>
+        </div>
+        <div class="dots">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </header>
+    <main>
+        <div class="results">
+            <h2>Resultados da Pesquisa</h2>
+            <div class="video-grid" id="videoGrid"></div>
+        </div>
+    </main>
+    <script>
+        // Função para obter parâmetros da URL
+        function getQueryParams() {
+            const params = {};
+            const search = window.location.search.substring(1);
+            const queryStrings = search.split('&');
+            for (let i = 0; i < queryStrings.length; i++) {
+                const pair = queryStrings[i].split('=');
+                params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+            }
+            return params;
+        }
+
+        function goToHome() {
+            window.location.href = "index.html";
+        }
+
+        function search() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            if (query) {
+                window.location.href = `search.html?query=${query}`;
+            }
+        }
+
+        // Simulação de vídeos encontrados com base na pesquisa (exemplo)
+        document.addEventListener('DOMContentLoaded', function() {
+            const queryParams = getQueryParams();
+            const query = queryParams.query;
+            if (query) {
+                // Filtrar vídeos com base na pesquisa (simulado)
+                const videos = [
+                    { id: 'a5c1275b-da58-455e-9a19-4c1d7d43af57', title: 'A fé que funciona', thumbnail: 'https://i.postimg.cc/PP88ZXHv/a-f-que-transforma.jpg' },
+                    { id: 'a1059f14-84fd-49a0-9936-c02a56774b59', title: 'Como vencer as tentações', thumbnail: 'https://i.postimg.cc/JGTj36DS/thumbnail.jpg' },
+                    { id: '1b3484ab-5e61-4041-ae2d-82273bb54e6f', title: 'Igreja Galpão', thumbnail: 'https://i.postimg.cc/fSxfhpsB/corte-tiktok.jpg' },
+                    { id: 'b5a5e49c-1458-48c5-ab9c-9c2cade96730', title: 'Pregação Deserto', thumbnail: 'https://i.postimg.cc/9rYY86Jf/thumbnail-2.jpg' },
+                    { id: 'f6f8ef37-69df-4ce3-bdf6-ed82d582e0a4', title: 'Pregação Pr. Cedric', thumbnail: 'https://i.postimg.cc/NyS62Bfd/thumbnail-4.jpg' },
+                    { id: 'c1234567-89ab-cdef-1234-56789abcdef0', title: 'Planos de Deus', thumbnail: 'https://i.postimg.cc/jCBDRpfx/thumbnail-5.jpg' }
+                ];
+
+                const filteredVideos = videos.filter(video => video.title.toLowerCase().includes(query));
+
+                const videoGrid = document.getElementById('videoGrid');
+                filteredVideos.forEach(video => {
+                    const videoDiv = document.createElement('div');
+                    videoDiv.classList.add('video-thumbnail');
+                    videoDiv.setAttribute('onclick', `openVideo('video.html?video=${video.id}')`);
+
+                    const thumbnailImg = document.createElement('img');
+                    thumbnailImg.src = video.thumbnail;
+                    thumbnailImg.alt = video.title;
+
+                    const titlePara = document.createElement('p');
+                    titlePara.textContent = video.title;
+
+                    videoDiv.appendChild(thumbnailImg);
+                    videoDiv.appendChild(titlePara);
+                    videoGrid.appendChild(videoDiv);
+                });
+            } else {
+                const noResults = document.createElement('p');
+                noResults.textContent = 'Nenhum resultado encontrado.';
+                document.getElementById('videoGrid').appendChild(noResults);
+            }
+        });
+
+        function openVideo(videoUrl) {
+            window.location.href = videoUrl;
+        }
+    </script>
+</body>
+</html>

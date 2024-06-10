@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fé-tec - Assistir Vídeo</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #1a1a1a;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo img {
+            width: 80px;
+            height: 80px;
+            margin-right: 10px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: #0044cc;
+            border-radius: 50px;
+            padding: 5px 20px;
+            width: calc(100% - 40px - 2em); /* Diminuir largura em 10px */
+        }
+
+        .search-bar input {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            margin-right: 10px;
+            width: calc(100% - 40px); /* Ajustar largura do input */
+        }
+
+        .search-bar button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            font-size: 20px;
+        }
+
+        .dots {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 10px;
+        }
+
+        .dots div {
+            width: 6px;
+            height: 6px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin: 2px 0;
+        }
+
+        main {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .video-player {
+            width: 80%;
+            margin: 0 auto 20px auto;
+        }
+
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+
+        .recommended {
+            width: 80%;
+        }
+
+        .video-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .video-thumbnail {
+            width: 200px;
+            cursor: pointer;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .video-thumbnail p {
+            margin: 10px 0 0 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container" onclick="goToHome()">
+            <div class="logo">
+                <img src="https://i.ibb.co/8sRDtry/logo.png" alt="FÉ-TEC Logo">
+            </div>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Pesquisar" id="searchInput">
+            <button onclick="search()">🔍</button>
+        </div>
+        <div class="dots">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </header>
+    <main>
+        <div class="video-player">
+            <iframe id="videoPlayer" src="" frameborder="0" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="recommended">
+            <h2>Vídeos Relacionados</h2>
+            <div class="video-grid" id="videoGrid">
+                <!-- Vídeos relacionados serão inseridos aqui via JavaScript -->
+            </div>
+        </div>
+    </main>
+    <script>
+        function goToHome() {
+            window.location.href = "index.html";
+        }
+
+        function search() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            if (query) {
+                window.location.href = `search.html?query=${query}`;
+            }
+        }
+
+        function openVideo(videoUrl) {
+            window.location.href = videoUrl;
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const videoId = urlParams.get('video');
+        const videoPlayer = document.getElementById('videoPlayer');
+        const videoGrid = document.getElementById('videoGrid');
+        const videoSources = {
+            "a5c1275b-da58-455e-9a19-4c1d7d43af57": {
+                url: "https://player-vz-180ed732-acc.tv.pandavideo.com.br/embed/?v=a5c1275b-da58-455e-9a19-4c1d7d43af57&iosFakeFullscreen=true",
+                thumb: "https://i.postimg.cc/PP88ZXHv/a-f-que-transforma.jpg",
+                title: "A fé que funciona"
+            },
+            "a1059f14-84fd-49a0-9936-c02a56774b59": {
+                url: "https://player-vz-180ed732-acc.tv.pandavideo.com.br/embed/?v=a1059f14-84fd-49a0-9936-c02a56774b59&iosFakeFullscreen=true",
+                thumb: "https://i.postimg.cc/JGTj36DS/thumbnail.jpg",
+                title: "Como vencer as tentações"
+            },
+            "1b3484ab-5e61-4041-ae2d-82273bb54e6f": {
+                url: "https://player-vz-180ed732-acc.tv.pandavideo.com.br/embed/?v=1b3484ab-5e61-4041-ae2d-82273bb54e6f&iosFakeFullscreen=true",
+                thumb: "https://i.postimg.cc/fSxfhpsB/corte-tiktok.jpg",
+                title: "Igreja Galpão"
+            },
+            "b5a5e49c-1458-48c5-ab9c-9c2cade96730": {
+                url: "https://player-vz-180ed732-acc.tv.pandavideo.com.br/embed/?v=b5a5e49c-1458-48c5-ab9c-9c2cade96730&iosFakeFullscreen=true",
+                thumb: "https://i.postimg.cc/9rYY86Jf/thumbnail-2.jpg",
+                title: "Pregação Deserto"
+            },
+            "f6f8ef37-69df-4ce3-bdf6-ed82d582e0a4": {
+                url: "https://player-vz-180ed732-acc.tv.pandavideo.com.br/embed/?v=f6f8ef37-69df-4ce3-bdf6-ed82d582e0a4&iosFakeFullscreen=true",
+                thumb: "https://i.postimg.cc/NyS62Bfd/thumbnail-4.jpg",
+                title: "Pregação Pr. Cedric"
+            },
+            "c1234567-89ab-cdef-1234-56789abcdef0": {
+                url: "https://player-vz-180ed732-acc.tv.pandavideo.com.br/embed/?v=c1234567-89ab-cdef-1234-56789abcdef0&iosFakeFullscreen=true",
+                thumb: "https://i.postimg.cc/jCBDRpfx/thumbnail-5.jpg",
+                title: "Planos de Deus"
+            }
+        };
+
+        videoPlayer.src = videoSources[videoId].url;
+
+        // Adicionar vídeos relacionados, exceto o que está em execução
+        for (const id in videoSources) {
+            if (id !== videoId) {
+                const video = videoSources[id];
+                const videoThumbnail = document.createElement('div');
+                videoThumbnail.classList.add('video-thumbnail');
+                videoThumbnail.onclick = () => openVideo(`video.html?video=${id}`);
+
+                const img = document.createElement('img');
+                img.src = video.thumb;
+                img.alt = video.title;
+
+                const p = document.createElement('p');
+                p.textContent = video.title;
+
+                videoThumbnail.appendChild(img);
+                videoThumbnail.appendChild(p);
+
+                videoGrid.appendChild(videoThumbnail);
+            }
+        }
+    </script>
+</body>
+</html>

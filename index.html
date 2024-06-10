@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fé-tec</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #1a1a1a;
+        }
+
+        .logo-container, .thumbnail-container {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo img, .thumbnail img {
+            width: 80px;
+            height: 80px;
+            margin-right: 10px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: #0044cc;
+            border-radius: 50px;
+            padding: 5px 20px;
+            width: calc(100% - 40px - 2em); /* Diminuir largura em 10px */
+        }
+
+        .search-bar input {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            margin-right: 10px;
+            width: calc(100% - 40px); /* Ajustar largura do input */
+        }
+
+        .search-bar button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            font-size: 20px;
+        }
+
+        .dots {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 10px;
+        }
+
+        .dots div {
+            width: 6px;
+            height: 6px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin: 2px 0;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .video-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .video-thumbnail {
+            cursor: pointer;
+            background-color: #1a1a1a;
+            border-radius: 5px;
+            padding: 10px;
+            transition: transform 0.2s ease;
+            text-align: center;
+        }
+
+        .video-thumbnail:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .video-thumbnail p {
+            margin: 10px 0 0 0;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container" onclick="goToHome()">
+            <div class="logo">
+                <img src="https://i.ibb.co/8sRDtry/logo.png" alt="FÉ-TEC Logo">
+            </div>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Pesquisar" id="searchInput">
+            <button onclick="search()">🔍</button>
+        </div>
+        <div class="dots">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </header>
+    <main>
+        <div class="video-grid">
+            <div class="thumbnail-container" onclick="openVideo('video.html?video=a5c1275b-da58-455e-9a19-4c1d7d43af57')">
+                <div class="video-thumbnail">
+                    <img src='https://i.postimg.cc/PP88ZXHv/a-f-que-transforma.jpg' alt='A fé que funciona'>
+                    <p>A fé que funciona</p>
+                </div>
+            </div>
+            <div class="thumbnail-container" onclick="openVideo('video.html?video=a1059f14-84fd-49a0-9936-c02a56774b59')">
+                <div class="video-thumbnail">
+                    <img src='https://i.postimg.cc/JGTj36DS/thumbnail.jpg' alt='Como vencer as tentações'>
+                    <p>Como vencer as tentações</p>
+                </div>
+            </div>
+            <div class="thumbnail-container" onclick="openVideo('video.html?video=1b3484ab-5e61-4041-ae2d-82273bb54e6f')">
+                <div class="video-thumbnail">
+                    <img src='https://i.postimg.cc/fSxfhpsB/corte-tiktok.jpg' alt='Igreja Galpão'>
+                    <p>Igreja Galpão</p>
+                </div>
+            </div>
+            <div class="thumbnail-container" onclick="openVideo('video.html?video=b5a5e49c-1458-48c5-ab9c-9c2cade96730')">
+                <div class="video-thumbnail">
+                    <img src='https://i.postimg.cc/9rYY86Jf/thumbnail-2.jpg' alt='pregação deserto'>
+                    <p>pregação deserto</p>
+                </div>
+            </div>
+            <div class="thumbnail-container" onclick="openVideo('video.html?video=f6f8ef37-69df-4ce3-bdf6-ed82d582e0a4')">
+                <div class="video-thumbnail">
+                    <img src='https://i.postimg.cc/NyS62Bfd/thumbnail-4.jpg' alt='pregação Pr. Cedric'>
+                    <p>pregação Pr. Cedric</p>
+                </div>
+            </div>
+            <div class="thumbnail-container" onclick="openVideo('video.html?video=6556c632-ba8d-4451-9a6a-d39da523e325')">
+                <div class="video-thumbnail">
+                    <img src='https://i.postimg.cc/jCBDRpfx/thumbnail-5.jpg' alt='Planos de Deus'>
+                    <p>Planos de Deus</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        function goToHome() {
+            window.location.href = "index.html";
+        }
+
+        function search() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            if (query) {
+                window.location.href = `search.html?query=${query}`;
+            }
+        }
+
+        function openVideo(videoUrl) {
+            window.location.href = videoUrl;
+        }
+    </script>
+</body>
+</html>
